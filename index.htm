@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  var user=getCookie("username");
+  if (user != "") {
+    alert("Welcome back, " + user);
+  } else {
+     user = prompt("We would like to know your name","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30);
+     }
+  }
+}
+</script>
+     <STYLE type="text/css">
+      #helpful_vid{
+        position: relative;
+        left: 10%;
+        z-index: -1;
+      }
+      #start_code{
+        position: relative;
+        left: 10%;
+        z-index:-1;
+        }
+      #menu{
+        position:fixed;
+        top: -2%;
+        left: 22%;
+        }
+      #menu1{
+        background: #6699ff;
+        z-index: 1;
+        }
+      #menu2{
+        background: #3366ff;
+        z-index: 1;
+        }
+      #menu3{
+        background: #0033ff;
+        z-index: 1;
+        }
+      #menu4{
+        background: #6699ff;
+        z-index: 1;
+        }
+      #info{
+        padding: 0px 100px;
+      }
+      #midbg{
+        z-index: 0;
+        width: 70%;
+        height: 300%;
+        background: #ffffff;
+        top: 15%;
+        left: 15%;
+        position: absolute;
+        z-index: -2;
+      }
+      #survey{
+        position:absolute;
+        left: 25%;
+        z-index: -1;
+      }
+      nav ul ul {display: none;position: fixed;}
+/*specifies that the dropdown will display as 200 px wide blocks */
+      nav ul li:hover > ul {display: block;width: 200px;}
+/* original look of the menu before mouseover. Also need to specify that it will have a table shape. Border radius controls how round the corners are. */
+      nav ul {box-shadow: 0px 0px 1px rgba(0,0,0,0.8);padding: 0 0px;padding-top: 0px;border-radius: 0px; list-style: none;position: relative;display: inline-table;}
+/*This sets the width, color, alignment of the text for the dropdown items */
+      nav ul li {float: left;width: 200px;text-align: center;color: #000000;}
+/*THIS IS WHERE YOU CAN SET THE COLOR FOR THE MAIN MENU ITEM WHEN YOU GO OVER IT */
+      nav ul li:hover {background: linear-gradient(top, #4f5964 0%, #000022 40%);background: -moz-linear-gradient(top, #4f5964 0%, #000044 40%);background: -webkit-linear-gradient(top, #4f5964 0%,#3333ff 40%);}
+/* color for the link in the menu*/
+      nav ul li:hover a {color: #fff;}
+      nav ul li a {display: block; padding: 25px 40px;}
+      nav ul ul {background: #3399ff; border-radius: 0px; padding: 0px;position: absolute; top: 100%; }
+      nav ul ul li {float: none; border-top: 1px solid #000000;
+/*borders between menu items */border-bottom: 1px solid #000000;position: relative;padding: 0px 0px; text-align: center;}
+       nav ul ul li a {padding: 0px 0px;color: #fff;}
+/*background color when you go over the links can also change color of text here if you want */
+       nav ul ul li a:hover {background: #000000;background: linear-gradient(top, #4f5964 0%, #000000 40%);background: -moz-linear-gradient(top, #4f5964 0%, #000000 40%);background: -webkit-linear-gradient(top, #4f5964 0%,#000000 40%);}
+      #logo {
+        top: 0%;
+        left: -2%;
+        position: fixed;
+        width: 17%;
+        }
+    </STYLE>
+    <style>
+      body {
+        margin: 0;
+        font-size: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 1%;
+        z-index: 1;
+        width: 98%;
+        background-color: #f1f1f1;
+        }
+      .header h2 {
+        text-align: center;
+        }
+
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background: #ccc;
+        }
+      .progress-bar {
+        height: 8px;
+        background: #4caf50;
+        width: 0%;
+        }
+      .content {
+        padding: 100px 0;
+        margin: 50px auto 0 auto;
+        width: 80%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .btn {
+        background-color: red;
+        position: relative;
+        left: 6.22%;
+        border: none;
+        color: white;
+        padding: 13px 5px;
+        cursor: pointer;
+        font-size: 20px;
+        width: 87.56%;
+        }
+      .btn:hover {
+        background-color: #cc3300;
+        }
+    </style>
+  </head>
+  <body bgcolor='#6699ff' onload="checkCookie()">
+    <div class="content">
+      <NAV>
+        <UL id="menu">
+          <LI id="menu1"><SPAN style='font-size: 30px'>Introduction</SPAN>
+            <UL>
+              <SPAN style="font-size:23px;color:'#ffffff';">
+                <LI>You'er already here</LI>
+                <LI>You'er already here</LI>
+                <LI>You'er already here</LI>
+              </SPAN>
+            </UL>
+          </LI>
+          <LI id="menu2"><SPAN style='font-size: 30px'>Why we code</SPAN>
+            <UL>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+            </UL>
+          </LI>
+          <LI id="menu3"><SPAN style='font-size: 30px'>How to code</SPAN>
+            <UL>
+              <LI><A href="danche24.github.io/how_to_code.html">understand</A></LI>
+              <LI><A href="danche24.github.io/how_to_code.html">understand</A></LI>
+              <LI><A href="danche24.github.io/how_to_code.html">understand</A></LI>
+            </UL> 
+          </LI>
+          <LI id="menu4"><div id="MyClockDisplay" onload="showTime()"></div></LI>
+        </UL>
+      </NAV>
+      <div class="header">
+        <div class="progress-container">
+          <div class="progress-bar" id="myBar">
+          </div>
+        </div>  
+      </div>
+      <IMG src="design logo.png" id="logo"></IMG>
+      <DIV id="midbg"></DIV>
+      <DIV id='info'>
+      <CENTER>
+        <SPAN style="font-size: 80px;">Do you know what's HTML?</SPAN><br><BR>
+        HTML stand for Hyper Text Markup Language. It a kind of language that is easy way to make a website. HTML is not the only language to make website, there's also other kind of code sthat can make a lot of things.<BR>
+
+        CSS is another coding language that can go in HTML codes. It's an important part of coding. Without it, you won'rt be able to have beautiful font, size, and color. This website's background's color is also made by CSS. Isn't CSS important?<BR><BR>
+
+        Javascript is a coding language that a lot of people use. It can use when you have the code <script type="text/Javascript"></script> you can type the things you want it to have inside. Javascript is useful and it can do a lot of things.<BR><BR>
+      </CENTER>
+      This is the list of coding language.
+      <UL>
+        <LI>Javascript</LI>
+        <LI>Python</LI>
+        <LI>Java</LI>
+        <LI>C#</LI>
+        <LI>C/C++</LI>
+        <LI>PHP</LI>
+        <LI>Swift</LI>
+        <LI>#C</LI>
+        <LI>Ruby</LI>
+        <LI>Objective-C</LI>
+        <LI>SQL</LI>
+        <LI>CSS</LI>
+        <LI><SPAN style="color: gray;">--HTML is a mark up language, not coding language--</SPAN></LI>
+      </UL>
+      I talk about HTML, CSS, and Javascript because this three language people use to make websites
+      <UL>
+        <LI>HTML set up the whole website. It can also connect CSS and Javascript to gether.</LI>
+        <LI>CSS set up the things in a website. For example, font size position, z index, and place.</LI>
+        <LI>Javascript </LI>
+      </UL>
+      <TABLE border="1">
+        <TR>
+          <TD>HTML:<BR>
+            <P>the language that I like the most in my opinion. It can make other language work together, like CSS and Java script which we will talk about later. HTML has the code that people</P>
+          </TD>
+          <TD>CSS:<BR>
+            <P>The language that can set up a lot of things, but you can't use it without HTML. In this website, it set up the logo, color of the progress bar, menu, and the word font.</P>
+          </TD>
+          <TD>Javascript:<BR>
+            <P>A langusge that set up the thing that need to move. For example, the clock at the top sets up with Javascript, the green progress bar too.</P>
+          </TD>
+        </TR>
+      </TABLE>
+      <script>
+        function showTime(){
+          var date = new Date();
+          var h = date.getHours(); // 0 - 23
+          var m = date.getMinutes(); // 0 - 59
+          var s = date.getSeconds(); // 0 - 59
+          var session = "AM";
+          if(h == 0){
+            h = 12;
+            }
+          if(h > 12){
+            h = h - 12;
+            session = "PM";
+            }
+          h = (h < 10) ? "0" + h : h;
+          m = (m < 10) ? "0" + m : m;
+          s = (s < 10) ? "0" + s : s;
+          var time = h + ":" + m + ":" + s + " " + session;
+          document.getElementById("MyClockDisplay").innerText = time;
+          document.getElementById("MyClockDisplay").textContent = time;
+          setTimeout(showTime, 1000);
+          }
+        showTime();
+      </script>
+    <script>
+      window.onscroll = function() {myFunction()};
+        function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+    <SPAN style="font-size: 22px;">
+      <BR><BR>How can I start to code?
+      first, you need a app for coding. I prefere Sublime text for you. Here's the <BR>download buttom.<BR>
+    </DIV>
+    <a href="https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg" download><button class="btn"> MAC OS Download</button></a><BR><BR>
+    <a href="https://download.sublimetext.com/Sublime%20Text%20Build%203207%20Setup.exe" download><button class="btn">Windows Download</button></a><BR>
+    <DIV id='info'>
+    Original website: <A href="https://www.sublimetext.com/3">https://www.sublimetext.com/3</A><BR>
+    Open it and follow the instruction that computer told you to get start.
+    <BR>
+    </SPAN>
+    <iframe width="700" height="326" src="https://www.youtube.com/embed/yWydGlKqnyo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </DIV>
+  </body>
+</html>

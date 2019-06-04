@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <STYLE type="text/css">
+      #information{
+        padding: 0px 100px;
+        }
+      #menu{
+        position:fixed;
+        top: -2%;
+        left: 22%;
+        }
+      #HTMLimg{
+        position: relative;
+        left: 6.25%;
+        top: 10px;
+      }
+      #menu1{
+        background: #6699ff;
+        }
+      #menu2{
+        background: #3366ff;
+        }
+      #menu3{
+        background: #0033ff;
+        }
+      #menu4{
+        background: #0033ff;
+        }
+      #midbg{
+        z-index: 0;
+        width: 70%;
+        height: 260%;
+        background: #ffffff;
+        top: 21%;
+        left: 15%;
+        position: absolute;
+        z-index: -1;
+      }
+      #pupupbg{
+        width: 102%;
+        height: 102%;
+        top: -0.5px;
+        left: -0.5px;
+        position: fixed;
+        z-index: 2;
+        opacity: 0.5;
+        background: black;
+        visibility: hidden;
+      }
+      #box{
+        position: fixed;
+        z-index: 3;
+        top: 270px;
+        left: 15%;
+        background: white;
+        width: 70%;
+        height: 30%;
+        border: solid 3px;
+        border-radius: 5px;
+        visibility: hidden;
+      }
+      #gotit{
+        top: 473px;
+        left: 933px;
+        width: 20%;
+        position: fixed;
+        z-index: 4;
+        border-radius: 5px;
+        visibility: hidden;
+        border-style: solid;
+        border-width: 1px 1px;
+        background: #5588ff;
+      }
+      #visibility{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #font-size{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #padding{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #bgcolor-tag{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #f-family{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #position{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #top{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #left{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #width{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #height{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #opacity{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #z-index{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #expCSS{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #HTML{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #HEAD{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 230px
+      }
+      #BODY{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #BR{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #IMG{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #DIV{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #H1{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #TABLE{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #STYLE{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #CENTER{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #SPAN{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #LI{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #TD{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #TR{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #TITLE{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #AUDIO{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #BUTTOM{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      #IFRAME{
+        top: 280px;
+        z-index: 6;
+        position: fixed;
+        visibility: hidden;
+        padding: 0px 250px
+      }
+      nav ul ul {display: none;position: fixed;}
+/*specifies that the dropdown will display as 200 px wide blocks */
+      nav ul li:hover > ul {display: block;width: 200px;}
+/* original look of the menu before mouseover. Also need to specify that it will have a table shape. Border radius controls how round the corners are. */
+      nav ul {box-shadow: 0px 0px 1px rgba(0,0,0,0.8);padding: 0 0px;padding-top: 0px;border-radius: 0px; list-style: none;position: relative;display: inline-table;}
+/*This sets the width, color, alignment of the text for the dropdown items */
+      nav ul li {float: left;width: 200px;text-align: center;color: #000000;}
+/*THIS IS WHERE YOU CAN SET THE COLOR FOR THE MAIN MENU ITEM WHEN YOU GO OVER IT */
+      nav ul li:hover {background: linear-gradient(top, #4f5964 0%, #000022 40%);background: -moz-linear-gradient(top, #4f5964 0%, #000044 40%);background: -webkit-linear-gradient(top, #4f5964 0%,#3333ff 40%);}
+/* color for the link in the menu*/
+      nav ul li:hover a {color: #fff;}
+      nav ul li a {display: block; padding: 25px 40px;}
+      nav ul ul {background: #3399ff; border-radius: 0px; padding: 0px;position: absolute; top: 100%; }
+      nav ul ul li {float: none; border-top: 1px solid #000000;
+/*borders between menu items */border-bottom: 1px solid #000000;position: relative;padding: 0px 0px; text-align: center;}
+       nav ul ul li a {padding: 0px 0px;color: #fff;}
+/*background color when you go over the links can also change color of text here if you want */
+       nav ul ul li a:hover {background: #000000;background: linear-gradient(top, #4f5964 0%, #000000 40%);background: -moz-linear-gradient(top, #4f5964 0%, #000000 40%);background: -webkit-linear-gradient(top, #4f5964 0%,#000000 40%);}
+      #logo {
+        top: 0%;
+        left: -2%;
+        position: fixed;
+        width: 17%;
+        }
+    </STYLE>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        font-size: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 1%;
+        z-index: 1;
+        width: 98%;
+        background-color: #f1f1f1;
+        }
+      .header h2 {
+        text-align: center;
+        }
+
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background: #ccc;
+        }
+      .progress-bar {
+        height: 8px;
+        background: #4caf50;
+        width: 0%;
+        }
+      .content {
+        padding: 100px 0;
+        margin: 50px auto 0 auto;
+        width: 80%;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .btn {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+        }
+      .btn:hover {
+        background-color: #cc3300;
+        }
+    </style>
+  </head>
+  <body bgcolor='#0033ff'>
+    <div class="content">
+      <NAV>
+        <UL id="menu">
+          <LI id="menu1"><SPAN style='font-size: 30px'>Introduction</SPAN>
+            <UL>
+              <LI><A href="danche24.github.io/index.html">understand</A></LI>
+              <LI><A href="danche24.github.io/index.html">understand</A></LI>
+              <LI><A href="danche24.github.io/index.html">understand</A></LI>
+            </UL>
+          </LI>
+          <LI id="menu2"><SPAN style='font-size: 30px'>Why we code</SPAN>
+            <UL>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+                <LI><A href="danche24.github.io/why_we_code.html">understand</A></LI>
+            </UL>
+          </LI>
+          <LI id="menu3"><SPAN style='font-size: 30px'>How to code</SPAN>
+            <UL>
+              <SPAN style="font-size:23px;color:'#ffffff';">
+                <LI>You'er already here</LI>
+                <LI>You'er already here</LI>
+                <LI>You'er already here</LI>
+              </SPAN>
+            </UL>
+          </LI>
+          <LI id="menu4"><div id="MyClockDisplay" onload="showTime()"></div></LI>
+        </UL>
+      </NAV>
+      <div class="header">
+        <div class="progress-container">
+          <div class="progress-bar" id="myBar">
+          </div>
+        </div>  
+      </div>
+      <IMG src="design logo.png" id="logo"></IMG>
+      <IMG src="HTML.jpeg" id="HTMLimg" width="87.5%"></IMG><BR><BR><BR>
+      <CENTER>
+        <DIV id="information">
+        Do you know how to code? It's easy. You just need to look all over the table down below to know how to code.<BR>
+        <H1>HTML</H1>
+        You can click on the code that you don't understand in the table. There will be the explanation show up.<BR>
+      </DIV><BR>
+        <TABLE border='1' bgcolor='6699ff'>
+          <TR>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('HTML').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;HTML&gt;</div></TD>
+            <TD><DIV onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('HEAD').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;HEAD&gt;</DIV></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('BODY').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;BODY&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('BR').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;BR&GT;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('IMG').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;IMG&GT;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('DIV').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;DIV&GT;</div></TD>
+          </TR>
+          <TR>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('H1').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;H1&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('TABLE').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;TABLE&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('STYLE').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;STYLE&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('CENTER').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;CENTER&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('SPAN').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;SPAN&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('LI').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;LI&gt;</div></TD>
+          </TR>
+          <TR>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('TD').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;TD&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('TR').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;TR&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('TITLE').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;TITLE&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('AUDIO').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;AUDIO&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('BUTTOM').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;BUTTOM&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('IFRAME').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;IFRAME&gt;</div></TD>
+          </TR>
+        </TABLE>
+      <!--ids: pupupbg, box, gotit, HTML, BODY-->
+      
+      <DIV id='HTML'>The tag &lt;HTML&gt; can start the whole program to work with HTML. Without this, you won't be able to use HTML.</DIV>
+      <DIV id='HEAD'>&lt;HEAD&gt;is the tag thay you put right after &lt;HTML&gt;. You can put other codes like &lt;STYLE&gt;,&lt;TITLE&gt; inside.</DIV>
+      <DIV id='BODY'>All the thing goes in this tag. If you want to put some text inside, you just type the thing that you want in this tag.</DIV>
+      <DIV id='BR'>This tag makes the things that you type change to next row.</DIV>
+      <DIV id='IMG'>This is the tag that make the image or picture shows up. in this tag, you need src to tell it which picture you want to show. Example: &lt;IMG src="image.jpg"&gt;</DIV>
+      <DIV id='DIV'>This tag can make something appear if you got css and you use id. Example: &lt;DIV id="DIV_TAG"&gt;. You can also make it </DIV>
+      <DIV id='H1'>H1</DIV>
+      <DIV id='TABLE'>This tag can create a table. With this tag, you cna start to habe a table!</DIV>
+      <DIV id='STYLE'>This tag need to be with css (to know more, go to CSS codes down below) This can combine CSS with HTML. you can use &lt;style&gt; in head, or you can put it in &lt;code style="(CSS code you want to put)"&gt; </DIV>
+      <DIV id='CENTER'>This tag set something at the center of a web page.</DIV>
+      <DIV id='SPAN'>This is the tag that help people change the font.</DIV>
+      <DIV id='LI'>This tag can create a list</DIV>
+      <DIV id='TD'>This start a colom of a table</DIV>
+      <DIV id='TR'>This tag start a row of a table.</DIV>
+      <DIV id='TITLE'>This tag set the name of this website that will show up at the tab.</DIV>
+      <DIV id='AUDIO'>This can let people use music. To use this, you need to have &lt;sources&gt; tag.</DIV>
+      <DIV id='BUTTOM'>This tag can create a buttom.</DIV>
+      <DIV id='IFRAME'>This can be use to embed something. You can try to find embed code on some online documents.</DIV>
+      <DIV id='yourlanguage'></DIV>
+      <BR>
+      <DIV style="padding: 0px 120px">**If you use HTML tag, you need to close it to makesure the next one of them are working. You need to type &lt;/(the tag you use)&gt; for closing tag. For the tag &lt;BR&gt;, you don't need to close it.</DIV><BR>
+        <SPAN style="font-size: 50px;font-weight: bold;">CSS</SPAN>
+          <TABLE border='1'bgcolor='6699ff'>
+          <TR>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('visibility').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;visibility&gt;</div></TD>
+            <TD><DIV onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('font-size').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;font-size&gt;</DIV></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('padding').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;padding&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('bgcolor-tag').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;background-color&GT;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('f-family').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;font-family&GT;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('position').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;position&GT;</div></TD>
+          </TR>
+          <TR>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('top').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;top&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('left').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;left&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('height').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;height&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('width').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;width&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('opacity').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;opacity&gt;</div></TD>
+            <TD><div onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('z-index').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">&lt;z-index&gt;</div></TD>
+          </TR>
+          <TR>
+            <TD colspan='6'>
+              <DIV onclick="document.getElementById('box').style.visibility='visible';document.getElementById('pupupbg').style.visibility='visible';document.getElementById('expCSS').style.visibility='visible';document.getElementById('gotit').style.visibility='visible';">
+                How to use CSS code
+              </DIV>
+            </TD>
+          </TR>
+        </TABLE>
+      <DIV id='visibility'>This tag makes something appear or disappear. When you type visibility:'hidden', the text will disappear. In another way, you cna make things appear if you type visibility:'visible', things will appear.</DIV>
+      <DIV id='font-size'>This change the size of the word. To use this, you need to type "font-size:10px" ** the 10 inside is just an example.</DIV>
+      <DIV id='padding'>This change the blank width of a thing. This tag is useful if you want to make something </DIV>
+      <DIV id='bgcolor-tag'>This change the background of the things you put. It can highlight word if you put it in words. You can also make shapes with this. To use this, you need to have background: '#ff0000', ff0000 is just an example.</DIV>
+      <DIV id='f-family'>You can change font with this tag. To use this tag, you need "font-family: Arial", Arial is just an example.. </DIV>
+      <DIV id='position'>Position is the tag that change how something take up space. There's three kind of them, absolute, related, and fixed. Absolute means they don't take up any space, and thir setting changes them by the size of the web page. Related means they take up space, like words. Fixed means They don't take up space, and they will be stay on a place on a screen.</DIV>
+      <DIV id='top'>This tag is related to position tag. You need to have position tag to use this. This tag changes how high it will be on screen or on a web page.</DIV>
+      <DIV id='left'>This tag is similar to the tag top, but it changes how left it is.</DIV>
+      <DIV id='height'>This tag changes the height of a picture.</DIV>
+      <DIV id='width'>This tag changes the width of a picture</DIV>
+      <DIV id='opacity'>this tag changes how much can you see through it. It can make the website darker, and fadein</DIV>
+      <DIV id='z-index'>this changes how front is a thing. If a thing have low z-indez than others, it may got covered by other things.</DIV>
+      <DIV id='expCSS'>To use CSS, you need the tag &lt;style type='text/CSS'&gt; You need # before the tag you put and between the tag and #, you need to think a name for the things that are going to use this kinf of code. <BR>For example: #Example{Visibility:hidden;position:absolute;}</DIV>
+        <DIV id='pupupbg' onclick="document.getElementById('expCSS').style.visibility='hidden';document.getElementById('z-index').style.visibility='hidden';document.getElementById('opacity').style.visibility='hidden';document.getElementById('width').style.visibility='hidden';document.getElementById('height').style.visibility='hidden';document.getElementById('left').style.visibility='hidden';document.getElementById('top').style.visibility='hidden';document.getElementById('position').style.visibility='hidden';document.getElementById('f-family').style.visibility='hidden';document.getElementById('bgcolor-tag').style.visibility='hidden';document.getElementById('padding').style.visibility='hidden';document.getElementById('font-size').style.visibility='hidden';document.getElementById('visibility').style.visibility='hidden';document.getElementById('box').style.visibility='hidden';document.getElementById('pupupbg').style.visibility='hidden';document.getElementById('gotit').style.visibility='hidden';document.getElementById('HTML').style.visibility='hidden';document.getElementById('HEAD').style.visibility='hidden';document.getElementById('BODY').style.visibility='hidden';document.getElementById('IMG').style.visibility='hidden';document.getElementById('BR').style.visibility='hidden';document.getElementById('DIV').style.visibility='hidden';document.getElementById('H1').style.visibility='hidden';document.getElementById('TABLE').style.visibility='hidden';document.getElementById('STYLE').style.visibility='hidden';document.getElementById('CENTER').style.visibility='hidden';document.getElementById('SPAN').style.visibility='hidden';document.getElementById('LI').style.visibility='hidden';document.getElementById('TD').style.visibility='hidden';document.getElementById('TR').style.visibility='hidden';document.getElementById('TITLE').style.visibility='hidden';document.getElementById('AUDIO').style.visibility='hidden';document.getElementById('BUTTOM').style.visibility='hidden';document.getElementById('IFRAME').style.visibility='hidden'"></DIV>
+        <DIV id='box'></DIV>
+        <DIV id='gotit' onclick="document.getElementById('expCSS').style.visibility='hidden';document.getElementById('z-index').style.visibility='hidden';document.getElementById('opacity').style.visibility='hidden';document.getElementById('width').style.visibility='hidden';document.getElementById('height').style.visibility='hidden';document.getElementById('left').style.visibility='hidden';document.getElementById('top').style.visibility='hidden';document.getElementById('position').style.visibility='hidden';document.getElementById('f-family').style.visibility='hidden';document.getElementById('bgcolor-tag').style.visibility='hidden';document.getElementById('padding').style.visibility='hidden';document.getElementById('font-size').style.visibility='hidden';document.getElementById('visibility').style.visibility='hidden';document.getElementById('box').style.visibility='hidden';document.getElementById('pupupbg').style.visibility='hidden';document.getElementById('gotit').style.visibility='hidden';document.getElementById('HTML').style.visibility='hidden';document.getElementById('HEAD').style.visibility='hidden';document.getElementById('BODY').style.visibility='hidden';document.getElementById('IMG').style.visibility='hidden';document.getElementById('BR').style.visibility='hidden';document.getElementById('DIV').style.visibility='hidden';document.getElementById('H1').style.visibility='hidden';document.getElementById('TABLE').style.visibility='hidden';document.getElementById('STYLE').style.visibility='hidden';document.getElementById('CENTER').style.visibility='hidden';document.getElementById('SPAN').style.visibility='hidden';document.getElementById('LI').style.visibility='hidden';document.getElementById('TD').style.visibility='hidden';document.getElementById('TR').style.visibility='hidden';document.getElementById('TITLE').style.visibility='hidden';document.getElementById('AUDIO').style.visibility='hidden';document.getElementById('BUTTOM').style.visibility='hidden';document.getElementById('IFRAME').style.visibility='hidden'">
+          got it
+        </DIV>
+        <BR><BR><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwGnIICJkJmLY0dKKOoQ2Wv1gkff9I27iq5IT9uwLf8irU6Q/viewform?embedded=true" width="700" height="900" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe><BR><SPAN style="font-size: 10px"> APA citation: Daniel Chen and Austin Chang. (June 4, 2019) HTML Helper. Retrieved <div id="date"></div>, form danche24.github.com/how_to_code.htm</span>
+    <DIV id="midbg"></DIV>
+<script>
+  {
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + ' ' + dd + ', ' + yyyy;
+  document.getElementById("date").innerHTML = today;
+}
+</script>
+<script>
+    function language(){
+      var text = 'Your system may not be in English. 你的系統可能不是英文。あなたのシステムは英語ではないかもしれません。Votre système peut ne pas être en anglais.'
+      if (navigator.language == en){
+        text="hello"
+      }
+    document.getElementById("yourlanguage").innerHTML = text
+    }
+   
+
+</script>
+      <script>
+        function showTime(){
+          var date = new Date();
+          var h = date.getHours(); // 0 - 23
+          var m = date.getMinutes(); // 0 - 59
+          var s = date.getSeconds(); // 0 - 59
+          var session = "AM";
+          if(h == 0){
+            h = 12;
+            }
+          if(h > 12){
+            h = h - 12;
+            session = "PM";
+            }
+          h = (h < 10) ? "0" + h : h;
+          m = (m < 10) ? "0" + m : m;
+          s = (s < 10) ? "0" + s : s;
+          var time = h + ":" + m + ":" + s + " " + session;
+          document.getElementById("MyClockDisplay").innerText = time;
+          document.getElementById("MyClockDisplay").textContent = time;
+          setTimeout(showTime, 1000);
+          }
+        showTime();
+      </script>
+    <script>
+// When the user scrolls the page, execute myFunction
+      window.onscroll = function() {myFunction()};
+        function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+      </body>
+</html>
