@@ -10,38 +10,67 @@
 				font-size: 10px;
 				border: solid 1px;
 			}
-			#minecraft_page{
-				position:fixed;
-				left: 1%;
-				top: 70px;
-				background-color: ffffff;
-				font-size: 10px;
-				border: solid 1px;
-				background-color: 00ffff;
-				width: 85%;
-			}
 		</STYLE>
+        <link rel="stylesheet" type="text/css" href="http://ganche24.github.io/css_styles/menustyle.css">
 	</HEAD>
 	<BODY>
-		VIP comming soon
-		VIP room password: <DIV id="VIP"><FORM><input type="password" name="VIP-password"></FORM></DIV>
+		<DIV>
+            <!-- menu thingy -->
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="http://danche24.github.io" style="font-size: 25px">Home</a>
+                <a href="mailto:danichen204@gmail.com" style="font-size: 25px" target="_blank">Contact</a>
+                <a href="#" style="font-size: 25px">Signup</a>
+                <div onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><a style="font-size: 25px">Login<spam style="font-size: 10px">(coming soon)</spam></a></div>
+                <div id="id01" class="modal">
+                    <form class="modal-content animate" action="/emailvarify.html" method="get">
+                        <div class="imgcontainer">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        </div>
+                        <div class="container">
+                            <label for="uname">Username</label>
+                            <input type="text" id="uname" name="usrname" pattern="{4,25}" title="Username cannot be longer than 25 or shorter than 4 character" required><BR>
+                            <label for="psw">Password</label>
+                            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}" title="Must contain at least one number and one uppercase and lowercase letter, and ≤20 characters" required><BR>
+                            <button type="submit">Login</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+                        <div class="container" style="background-color:#f1f1f1">
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <DIV onmouseover="document.getElementById('mls').style.visibility='visible';" onmouseleave="document.getElementById('mls').style.visibility='hidden';" style="font-size: 25px">
+                    <a href="http://danche24.github.io/minecraft/index.html">Minecraft</a>
+                    <DIV class="mls" id="mls">
+                        <FONT color="lightgray">
+                            <a href="http://danche24.github.io/minercaft/resourcepacks/index.html">Resourcepacks</a>
+                            <a href="http://danche24.github.io/minercaft/mods/index.html">Mods</a>
+                            <a href="http://danche24.github.io/minercaft/videos/index.html">Videos</a>
+                        </FONT>
+                    </DIV>
+                </DIV>
+            </div>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <script>
+                function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+                }
+                function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                }
+            </script>
+        </DIV>
 		<DIV id="Authorlist"><IMG src="author.jpeg" width="90%"></IMG>This webpage is made by Daniel Chen and other helpers</DIV>
-		<DIV id="minecraft_page" href="danche24.github.io/minecraft"><H1>Go to minecraft page</H1></DIV><BR><BR><BR><BR>
 		<A href="danche24.github.io/birthdaycard.sb3" download>clicking me to download scratch birthday e-card</A><HR>
 		This is my home page. Every work, fun things that I want to say will be here.<HR>
 		Join KAS爆料八卦社 by <A href="https://hangouts.google.com/group/rnJAJtzfySSQxfhz7">clicking me</A><HR>
-		E Block G7 Design T3 link: <a href="https://classroom.google.com/u/0/c/MzI2OTA3NzUxMjZa">click me</a><BR>
-		E Block G7 Music T1 link:<a href="https://classroom.google.com/u/0/c/MTUwMDQ4MjI2NTFa">click me</a><BR>
-		A Block Science G7 link: <a href="https://classroom.google.com/u/0/c/MTUwMDU0MDU1Nzla">click me</a><BR>
-		D Block Pre-Algebra link: <a href="https://classroom.google.com/u/0/c/MTUwMDU3ODg3MTVa">click me</a><BR>
-		B Block ELL link: <a href="https://classroom.google.com/u/0/c/MTQ5OTMwMDA3NjZa">click me</a><BR>
 		<HR>
-		Typhoon News: Typhoon Bailu is coming to Taiwan this is the current location of Bailu.<IMG src="typhoon_bailu.png" width='20%'> <IMG src="typhoon_bailu_moving.png" width='20%'><HR>
+            Typhoon News: Typhoon Bailu is coming to Taiwan this is the current location of Bailu.<IMG src="typhoon_bailu.png" width='20%'></IMG><IMG src="typhoon_bailu_moving.png" width='20%'></IMG><HR>
 		School started today!!! 8/12 2019<HR>
-		It's now summer break!!!<HR> Some teacher won't come for the next year. Ms. George is one of them, and I will miss her forever. The classes I have during 2018-2019: <IMG src="classes2018-2019.png" width='30%'><HR>
-		<marquee direction="right" behavior="alternate" scrollamount="10">KAS award anouncement</marquee><BR>Congradulation to Wilson for the student for this year!!!<HR>
-		CONGRADULATIONS. <0/ \0> The award I got for June 12, 2019: Science award and most improved award.<HR>
-		<a href='introduction.html'>IT 2019 (don't copy my product)</a><BR>
+		<a href='http://dnahce24.github.io/introduction.html'>IT 2019 (don't copy my product)</a><BR>
 		I'll update my website(s) very frequently. You can check back what's new. If you find any mistake in my website, you can report from the from at the bottom.
 	</BODY>
 </HTML>
