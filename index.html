@@ -2,12 +2,6 @@
 	<HEAD>
 		<TITLE>Home</TITLE>
         <style>
-            #KASPortal {
-                position: absolute;
-                top: 2px;
-                right: 2px;
-                background-color:#44ff55;
-            }
             body {
                 font-family: "Lato", sans-serif;
             }
@@ -60,15 +54,6 @@
               display: inline-block;
               border: 1px solid #ccc;
               box-sizing: border-box;
-            }
-            button {
-              background-color: #4CAF50;
-              color: white;
-              padding: 14px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              width: 100%;
             }
             /* Extra styles for the cancel button */
             .cancelbtn {
@@ -152,19 +137,33 @@
               from {transform: scale(0)} 
               to {transform: scale(1)}
             }
-            #Authorlist{
-				position:fixed;
-				left: 90%;
-				top: 1%;
-				background-color: ffffff;
-				font-size: 10px;
-				border: solid 1px;
-                body {
-              font-family: "Lato", sans-serif;
+            .button {
+                border: none;
+                color: white;
+                padding: 12% 2%;
+                text-align: center;
+                display: inline-block;
+                margin: 4px 2px;
+                border-radius: 6px;
+                width: 44.4%;
+                height: 80px;
+                font-size: 60px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* For Safari */
+                transition-duration: 0.4s;
+            }
+            .button:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .button-y {
+                background-color: #ffd500; /* yellow */
+            }
+            .button-r {
+                background-color: #f44336;/* red */
             }
         </style>
 	</HEAD>
-	<BODY>
+	<BODY vlink="blue">
 		<DIV>
             <!-- menu thingy -->
             <DIV id="mySidenav" class="sidenav">
@@ -181,9 +180,9 @@
                         </DIV>
                         <DIV class="container">
                             <LABEL for="uname">Username</LABEL>
-                            <INPUT type="text" id="uname" name="usrname" pattern="{4,25}" title="Username cannot be longer than 25 or shorter than 4 character" required><BR>
+                            <INPUT type="text" id="uname" name="usrname" pattern="{4,25}" title="Username cannot be longer than 25 or shorter than 4 character" required<BR/>
                             <LABEL for="psw">Password</LABEL>
-                            <INPUT type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}" title="Must contain at least one number and one uppercase and lowercase letter, and ≤20 characters" required><BR>
+                            <INPUT type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}" title="Must contain at least one number and one uppercase and lowercase letter, and ≤20 characters" required><BR/>
                             <BUTTON type="submit">Login</BUTTON>
                             <LABEL>
                                 <INPUT type="checkbox" checked="checked" name="remember"> Remember me
@@ -216,11 +215,8 @@
                 }
             </script>
         </DIV>
-		<H2>Hello guys, I'm Hypersun_pro.</H2> I have a lot of minecraft related products under develope. Check out my cool stuff down below.<BR><BR>
-        <A href="http://danche24.github.io/minecraft/resourcepacks.html">>>>Resourcepack</A><BR>
-        <A href="http://danche24.github.io/minecraft/maps.html">>>>Maps</A><BR>
-        <A href="http://danche24.github.io/minecraft/news.html">>>>News</A><BR>
-        <A href="http://danche24.github.io/minecraft/videos.html">>>>Videos</A><BR><BR>
-        <DIV id="KASPortal"><A href="http://danche24.github.io/KAS/index.html">KAS Portal</A></DIV>
+        <H1>Where are you going?</H1><BR>
+        <A href="https://danche24.github.io/minecraft/index.html"><DIV class="button button-y">Hypersun_pro portal</DIV></A>
+        <A href="https://danche24.github.io/KAS/index.html"><DIV class="button button-r">KAS portal</DIV></A>
 	</BODY>
 </HTML>
