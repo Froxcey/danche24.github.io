@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <TITLE>KAS Home</TITLE>
+    </head>
+    <body>
+        <H1>The Great Train Race</H1>
+        <div id="RemainTime"></div><BR>
+        <iframe id="VideoEmbed" width="100%" height="580" style="" src="https://www.youtube.com/embed/fecF3n2BWWI?rel=0&autoplay=1" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!--<iframe src="https://www.youtube.com/embed/fecF3n2BWWI?rel=0&autoplay=1" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe>-->
+        <div id="test"></div>
+    </body>
+    <script>
+        var deadline = new Date("June 5, 2020 18:15:00").getTime(); 
+        var x = setInterval(function() { 
+            var now = new Date().getTime(); 
+            var t = deadline - now; 
+            var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+            var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+            var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+            document.getElementById("RemainTime").innerHTML = "Remaining time: " + days + "d "  
+            + hours + "h " + minutes + "m " + seconds + "s "; 
+            if (t < 0) { 
+                clearInterval(x); 
+                document.getElementById("RemainTime").innerHTML = "";
+                document.getElementById('VideoEmbed').style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px";
+            } 
+        }, 1000);
+    </script>
+</html>
