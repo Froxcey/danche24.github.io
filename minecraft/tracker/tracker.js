@@ -66,36 +66,38 @@ function trackerStart(){
         } else {
             tracker.option.interval = Number(document.getElementById('trackerInputFormsInterval').value);
         }
-    };
-    if (document.getElementById('trackerInputFormsHypixelKey') && document.getElementById('trackerInputFormsHypixelKey').value != ""){tracker.option.hypixelKey = document.getElementById('trackerInputFormsHypixelKey').value}
-    
+    }
+    if (document.getElementById('trackerInputFormsHypixelKey') && document.getElementById('trackerInputFormsHypixelKey').value != ""){tracker.option.hypixelKey = document.getElementById('trackerInputFormsHypixelKey').value;}
     
     
     if (tracker.option.user.length < 17){
         request.open('get', `https://api.mojang.com/users/profiles/minecraft/${tracker.option.user}`);
         request.onload = function(){
-            if(request.response.id && request.response.name){
-                tracker.option.uuid = tracker.option.user;
-                tracker.option.name = request.response.name;
+            var respond = JSON.parse(request.response);
+            if(respond.id && respond.name){
+                tracker.option.uuid = respond.id;
+                tracker.option.name = respond.name;
                 tracker.docLog(`Success: start tracking player: ${tracker.option.name} (${tracker.option.uuid})`);
             }
         };
         request.send();
     } else {
+        tracker.option.user = tracker.option.user.replace("-", "");
         request.open('get', `https://api.mojang.com/user/profiles/${tracker.option.user}/names`);
         request.onload = function(){
-            if(request.response.id && request.response.name){
-                var length = request.response.length - 1;
+            var respond = JSON.parse(request.response);
+            if(!respond.error){
+                var length = respond.length - 1;
                 tracker.option.uuid = tracker.option.user;
-                tracker.option.name = request.response[length].name;
+                tracker.option.name = respond[length].name;
                 tracker.docLog(`Success: start tracking player: ${tracker.option.name} (${tracker.option.uuid})`);
             }
         };
         request.send();
     }
-    if(!request.response.id || !request.response.name) return tracker.docLog('Error: invalid uuid or name');
+    
+    if(!tracker.option.uuid || !tracker.option.name) return tracker.docLog('Error: invalid uuid or name');
 
-    tracker.docLog(`Now tracking player: ${tracker.option.name}`);
     request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
     request.onloadend = function() {
         var respond = JSON.parse(request.response);
@@ -121,10 +123,10 @@ function trackerStart(){
         }
     };
     request.send();
-    request.timeout = 100000
+    request.timeout = 100000;
     request.ontimeout = function(){
-        tracker.docLog('Error: connection timeout(reply from hypixel was too slow)')
-    }
+        tracker.docLog('Error: connection timeout(reply from hypixel was too slow)');
+    };
     function checkHypixel(){
         request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
         request.onloadend = function() {
@@ -164,6 +166,6 @@ function trackerStart(){
     if (document.getElementById('trackerCalculate')){
         document.getElementById('trackerCalculate').onclick = function() {
             tracker.docLog(tracker.calculation.getTime());
-        }
+        };
     }
 }
