@@ -1,0 +1,217 @@
+::placeholder { 
+    color: #383838;
+    opacity: 1;
+    font-size: 25px;
+    text-align: center;
+}
+#trackerInput {
+    display: block;
+    transition-duration: left 1s;
+}
+#trackerInputAdvanceOption {
+    visibility: hidden;
+    position: absolute;
+}
+#trackerConsole {
+    visibility: hidden;
+    position: absolute;
+}
+#bg-box {
+    position: absolute;
+    z-index: 0;
+    width: 60%;
+    left: 20%;
+    height: 50%;
+    top: 30%;
+    opacity: 0.7;
+}
+#bg-gif{
+    position: absolute;
+    z-index: -1;
+    width: 102%;
+    left: -1%;
+    top: -1%;
+}
+#trackerInputFormsHeader {
+    z-index: 2;
+    position: absolute;
+    left: 23%;
+    top: 35%;
+    font-size: 40px;
+    font-family:'Franklin Gothic Medium', Arial, sans-serif;
+    color: white;
+}
+#trackerInputFormsUser {
+    position: absolute;
+    z-index: 3;
+    left: 20%;
+    top: 50%;
+    height: 50px;
+    width: 59.7%;
+    background-color: rgb(133, 133, 133, 0.8);
+    border: 0px;
+    text-align: center;
+    font-size: 30px;
+}
+#trackerInputFormsStart {
+    border-radius: 10px 10px 10px 10px;
+    position: absolute;
+    z-index: 3;
+    left: 45%;
+    top: 62%;
+    height: 35px;
+    width: 10%;
+    background-color: rgb(47, 221, 90);
+    border: 0px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#trackerInputFormsStart:active {
+    background-color: rgb(1, 192, 49);
+}
+#trackerInputFormsAdvancedBtn {
+    border-radius: 10px 10px 10px 10px;
+    position: absolute;
+    z-index: 3;
+    left: 71.5%;
+    top: 73%;
+    height: 30px;
+    width:85px;
+    background-color: rgb(155, 155, 155);
+    border: 0px;
+    font-size: 13px;
+    cursor: pointer;
+}
+#trackerInputFormsAdvancedBtn:active {
+    background-color: rgb(122, 122, 122);
+}
+#menuCredit {
+    position: absolute;
+    color: white;
+    left: 90%;
+    top: 96%;
+    z-index: 11;
+}
+/*advanced bar css*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0,0.6);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    
+}
+.sidenav a {
+    padding: 4px 4px 4px 16px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav span {
+    top: 20px;
+    padding: 10px, 10px, 10px, 10px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    color: #ff7575;
+}
+.sidenav h2 {
+    padding: 0px 0px 0px 20px;
+    font-size: 34px;
+    text-decoration: none;
+    color: #999898;
+    display: block;
+    top: 5px;
+    transition: 0.3s;
+}
+.advancedTextbox{
+    padding: 0px 0px 0px 20px;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
+    width: 225px;
+    height: 25px;
+    left: 20px;
+    text-align: center;
+}
+.sidenav ::placeholder{
+    font-size: 15px;
+    color: #525252;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+/*test*/
+
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 0%;
+    left: 5%;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .overlay h1 {
+    text-decoration: none;
+    font-size: 50px;
+    color: #747474;
+    display: block;
+    transition: 0.3s;
+  }
+  #trackerConsole {
+    position: absolute;
+    color: #484848;
+    z-index: 9;
+    padding-top: 30px;
+    left: -200%;
+    font-size: 20px;
+    transition: left 1.7s;
+  }
+  .overlay #titleBackground {
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    height: 100%;
+    position: relative;
+    top: -2%;
+    left: -200%;
+    z-index: 10;
+    border-bottom: 1px solid #000000;
+    padding-left: 40px;
+    transition: left 1s;
+  }
+  #trackerCalculate {
+    position: absolute;
+    color: #484848;
+    z-index: 30;
+    left: -300%;
+    transition: left 1.7s;
+    top: 5%;
+  }
