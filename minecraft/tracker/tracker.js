@@ -50,7 +50,7 @@ function trackerStart(){
             }
         },
         docLog(data){
-            tracker.consoleContent = `${tracker.consoleContent}${data} <BR>`;
+            tracker.consoleContent = `${tracker.consoleContent}>${data} <BR>`;
             document.getElementById('trackerConsole').innerHTML = tracker.consoleContent;
         },
         mem: {
@@ -76,8 +76,9 @@ function trackerStart(){
     firstRequest.open('get', `https://api.hypixel.net/player?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
     firstRequest.onloadend = function(){
         var respond = JSON.parse(firstRequest.response);
+        console.log(respond)
         if (!respond.success) {
-            tracker.docLog(`Error from Hypixel: ${respond.reason}`);
+            tracker.docLog(`Error from Hypixel: ${respond.cause}`);
             return;
         } else {
             tracker.option.name = respond.player.playername;
