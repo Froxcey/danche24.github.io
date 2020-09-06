@@ -57,6 +57,7 @@ function trackerStart(){
             online: false,
             game: '',
             lastLogout: new Date(),
+            deviceOnline: true,
         },
         consoleContent: ''
     };
@@ -76,7 +77,7 @@ function trackerStart(){
     firstRequest.open('get', `https://api.hypixel.net/player?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
     firstRequest.onloadend = function(){
         var respond = JSON.parse(firstRequest.response);
-        console.log(respond)
+        console.log(respond);
         if (!respond.success) {
             tracker.docLog(`Error from Hypixel: ${respond.cause}`);
             return;
@@ -93,6 +94,11 @@ function trackerStart(){
 
     //get first session check
     function firstCheck(){
+        if (!navigator.onLine){
+            tracker.docLog(`Disconnected to internet. Retry in ${tracker.option.interval}s`);
+            tracker.mem.deviceOnline = false;
+            return;
+        }
         request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
         request.onloadend = function() {
             var respond = JSON.parse(request.response);
@@ -119,6 +125,16 @@ function trackerStart(){
     }
     //real check
     function checkHypixel(){
+        if (!navigator.onLine){
+            tracker.docLog(`Disconnected to internet. Retry in ${tracker.option.interval}s`);
+            tracker.mem.deviceOnline = false;
+            return;
+        } else {
+            if (!tracker.mem.deviceOnline){
+                tracker.mem.deviceOnline = true;
+                tracker.docLog(`Reconnected to internet`);
+            }
+        }
         request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
         request.onloadend = function() {
             var respond = JSON.parse(request.response);

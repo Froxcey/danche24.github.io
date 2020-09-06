@@ -23,6 +23,10 @@
             document.getElementById("titleBackground").style.left = "-5%"
             document.getElementById("trackerConsole").style.left = "-30px"
             document.getElementById("trackerCalculate").style.left = "75%"
+            setTimeout(() => {
+                document.getElementById("trackerInput").innerHTML = ""
+            }, 3000);
+            
         }
         addEventListener("keydown", key => {
             if (key.keyCode == 13){
