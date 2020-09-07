@@ -107,11 +107,11 @@ function trackerStart(){
                 return;
             } else {
                 if (respond.session.online){
+                    tracker.mem.game = respond.session.gameType;
                     var nowtime = new Date();
-                    tracker.docLog(`Player now online, game: ${respond.session.gameType} (${new Date().toLocaleTimeString()})`);
+                    tracker.docLog(`Player now online, game: ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
                     notify('now online');
                     tracker.mem.online = true;
-                    tracker.mem.game = respond.session.gameType;
                 } else {
                     tracker.docLog(`Player offline (Last online: ${tracker.mem.lastLogout.toLocaleDateString()} ${tracker.mem.lastLogout.toLocaleTimeString()})`);
                 }
@@ -154,7 +154,7 @@ function trackerStart(){
                         tracker.calculation.addtime();
                         if (respond.session.gameType != tracker.mem.game){
                             tracker.mem.game = respond.session.gameType;
-                            tracker.docLog(`Player change game to ${tracker.mem.gameType} (${new Date().toLocaleTimeString()})`);
+                            tracker.docLog(`Player change game to ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
                             notify('change game');
                         }
                     }
