@@ -1,4 +1,6 @@
 function trackerStart(){
+    var msg = new SpeechSynthesisUtterance();
+    msg.volume = 0;
     if (!document.getElementById('trackerInputFormsUser')) return console.error('the id \"trackerInputFormUser\" is required');
     if (!document.getElementById('trackerConsole')) return console.error('the id \"trackerConsole\" is required');
     function notify(message){
@@ -6,7 +8,7 @@ function trackerStart(){
             alert("This browser does not support desktop notification");
         }
         if (Notification.permission == "granted"){
-            var info = new Notification(`Tracking player ${message}`);
+            var info = new Notification(`${tracker.option.name} ${message}`);
         } else {
             Notification.requestPermission();
         }
@@ -72,12 +74,13 @@ function trackerStart(){
         }
     }
     if (document.getElementById('trackerInputFormsHypixelKey') && document.getElementById('trackerInputFormsHypixelKey').value != ""){tracker.option.hypixelKey = document.getElementById('trackerInputFormsHypixelKey').value;}
-    
+    if (!'speechSynthesis' in window) {
+        tracker.docLog(`Your browser doesn't support tts`);
+    }
     //check uuid and name on hypixel
     firstRequest.open('get', `https://api.hypixel.net/player?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
     firstRequest.onloadend = function(){
         var respond = JSON.parse(firstRequest.response);
-        console.log(respond);
         if (!respond.success) {
             tracker.docLog(`Error from Hypixel: ${respond.cause}`);
             return;
@@ -91,7 +94,7 @@ function trackerStart(){
     };
     firstRequest.send();
     firstRequest.timeout = 10000;
-
+    if(document.getElementById("playerModule")){document.getElementById("playerModule").innerHTML = `<img src="https://crafatar.com/renders/body/${tracker.option.uuid}"></img>`}
     //get first session check
     function firstCheck(){
         if (!navigator.onLine){
@@ -104,13 +107,19 @@ function trackerStart(){
             var respond = JSON.parse(request.response);
             if (!respond.success){
                 tracker.docLog(`Error from Hypixel: ${respond.cause}`);
+                msg.text = `Error, ${respond.cause}`;
                 return;
             } else {
                 if (respond.session.online){
                     tracker.mem.game = respond.session.gameType;
+                    if (!respond.session.gameType){
+                        console.log(respond);
+                    }
                     var nowtime = new Date();
-                    tracker.docLog(`Player now online, game: ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
+                    msg.text = `${tracker.option.name} now online, game type, ${tracker.mem.gameType}`;
+                    tracker.docLog(`${tracker.option.name} now online, game: ${tracker.mem.gameType} (${new Date().toLocaleTimeString()})`);
                     notify('now online');
+                    window.speechSynthesis.speak(msg);
                     tracker.mem.online = true;
                 } else {
                     tracker.docLog(`Player offline (Last online: ${tracker.mem.lastLogout.toLocaleDateString()} ${tracker.mem.lastLogout.toLocaleTimeString()})`);
@@ -128,11 +137,16 @@ function trackerStart(){
         if (!navigator.onLine){
             tracker.docLog(`Disconnected to internet. Retry in ${tracker.option.interval}s`);
             tracker.mem.deviceOnline = false;
+
+            msg.text = `Internet connection disconnected`;
+            window.speechSynthesis.speak(msg);
             return;
         } else {
             if (!tracker.mem.deviceOnline){
                 tracker.mem.deviceOnline = true;
                 tracker.docLog(`Reconnected to internet`);
+                msg.text = `Internet connection reconnected`;
+                window.speechSynthesis.speak(msg);
             }
         }
         request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
@@ -140,29 +154,37 @@ function trackerStart(){
             var respond = JSON.parse(request.response);
             if (!respond.success){
                 tracker.docLog(`Error from Hypixel: ${respond.cause}`);
+                msg.text = `Error, ${respond.cause}`;
+                window.speechSynthesis.speak(msg);
                 return;
             } else {
                 if (respond.session.online){
                     if (!tracker.mem.online){
                         var nowtime = new Date();
-                        tracker.docLog(`Player now online, game = ${respond.session.game} (${new Date().toLocaleTimeString()})`);
+                        tracker.docLog(`${tracker.option.name} now online, game = ${respond.session.gameType} (${new Date().toLocaleTimeString()})`);
                         notify('now online');
+                        msg.text = `${tracker.option.name} now online, game type, ${tracker.mem.gameType}`;
+                        window.speechSynthesis.speak(msg);
                         tracker.mem.online = true;
                         tracker.calculation.addtime();
-                        tracker.mem.game = respond.session.game;
+                        tracker.mem.game = respond.session.gameType;
                     } else {
                         tracker.calculation.addtime();
                         if (respond.session.gameType != tracker.mem.game){
                             tracker.mem.game = respond.session.gameType;
-                            tracker.docLog(`Player change game to ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
+                            tracker.docLog(`${tracker.option.name} change game to ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
                             notify('change game');
+                            msg.text = `${tracker.option.name} changed game, game type, ${tracker.mem.game}`;
+                            window.speechSynthesis.speak(msg);
                         }
                     }
                 } else {
                     if (tracker.mem.online){
                         tracker.docLog(`Player now offline (${new Date().toLocaleTimeString()})`);
-                        notify('now online');
+                        notify('now offline');
                         tracker.mem.online = false;
+                        msg.text = `${tracker.option.name} now offline`;
+                        window.speechSynthesis.speak(msg);
                     }
                 }
             }

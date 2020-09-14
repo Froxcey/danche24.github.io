@@ -216,3 +216,8 @@
     transition: left 1.7s;
     top: 5%;
   }
+  #playerModule {
+      position: absolute;
+      left: 80%;
+      top: 70%;
+  }
