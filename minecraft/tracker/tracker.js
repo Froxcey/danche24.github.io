@@ -20,7 +20,7 @@ function trackerStart(){
             user: document.getElementById('trackerInputFormsUser').value,
             uuid: document.getElementById('trackerInputFormsUser').value,
             name: '',
-            interval: 10,
+            interval: 15,
             hypixelKey: 'eb954b0a-acc4-4d97-983e-4758f3eaa410',
         },
         calculation : {
@@ -60,6 +60,7 @@ function trackerStart(){
             game: '',
             lastLogout: new Date(),
             deviceOnline: true,
+            lastLogin: new Date()
         },
         consoleContent: ''
     };
@@ -71,6 +72,14 @@ function trackerStart(){
             tracker.option.interval = 5;
         } else {
             tracker.option.interval = Number(document.getElementById('trackerInputFormsInterval').value);
+        }
+    }
+    if (document.getElementById('trackerInputFormsTTS') && Number(document.getElementById('trackerInputFormsTTS').value)&& document.getElementById('trackerInputFormsTTS').value != ""){
+        if (document.getElementById('trackerInputFormsTTS').value > 1 || document.getElementById('trackerInputFormsTTS').value < 0){
+            tracker.docLog('TTS volume bust be between 0 and 1');
+            tracker.option.interval = 0;
+        } else {
+            msg.volume = Number(document.getElementById('trackerInputFormsTTS').value);
         }
     }
     if (document.getElementById('trackerInputFormsHypixelKey') && document.getElementById('trackerInputFormsHypixelKey').value != ""){tracker.option.hypixelKey = document.getElementById('trackerInputFormsHypixelKey').value;}
@@ -87,19 +96,24 @@ function trackerStart(){
         } else {
             tracker.option.name = respond.player.playername;
             tracker.mem.lastLogout = new Date(respond.player.lastLogout);
+            tracker.mem.lastLogin = new Date(respond.player.lastLogin);
             tracker.docLog(`Successfully connect to Hypixel`);
             tracker.docLog(`Start tracking ${tracker.option.name}`);
+            msg.text = `start tracking ${tracker.option.name}`;
+            window.speechSynthesis.speak(msg);
             firstCheck();
         }
     };
     firstRequest.send();
     firstRequest.timeout = 10000;
-    if(document.getElementById("playerModule")){document.getElementById("playerModule").innerHTML = `<img src="https://crafatar.com/renders/body/${tracker.option.uuid}"></img>`}
+    if(document.getElementById("playerModule")){document.getElementById("playerModule").innerHTML = `<img src="https://crafatar.com/renders/body/${tracker.option.uuid}?overlay"></img>`};
     //get first session check
     function firstCheck(){
         if (!navigator.onLine){
             tracker.docLog(`Disconnected to internet. Retry in ${tracker.option.interval}s`);
             tracker.mem.deviceOnline = false;
+            msg.text = `Internet connection disconnected`;
+            window.speechSynthesis.speak(msg);
             return;
         }
         request.open('get', `https://api.hypixel.net/status?key=${tracker.option.hypixelKey}&uuid=${tracker.option.uuid}`);
@@ -112,12 +126,10 @@ function trackerStart(){
             } else {
                 if (respond.session.online){
                     tracker.mem.game = respond.session.gameType;
-                    if (!respond.session.gameType){
-                        console.log(respond);
-                    }
                     var nowtime = new Date();
-                    msg.text = `${tracker.option.name} now online, game type, ${tracker.mem.gameType}`;
-                    tracker.docLog(`${tracker.option.name} now online, game: ${tracker.mem.gameType} (${new Date().toLocaleTimeString()})`);
+                    msg.text = `${tracker.option.name} now online, game type, ${respond.session.gameType} ${respond.session.mode}`;
+                    tracker.docLog(`${tracker.option.name} now online, game: ${respond.session.gameType} ${respond.session.mode} (since ${tracker.mem.lastLogin.toLocaleTimeString()})`);
+                    
                     notify('now online');
                     window.speechSynthesis.speak(msg);
                     tracker.mem.online = true;
@@ -163,7 +175,7 @@ function trackerStart(){
                         var nowtime = new Date();
                         tracker.docLog(`${tracker.option.name} now online, game = ${respond.session.gameType} (${new Date().toLocaleTimeString()})`);
                         notify('now online');
-                        msg.text = `${tracker.option.name} now online, game type, ${tracker.mem.gameType}`;
+                        msg.text = `${tracker.option.name} now online, game type, ${respond.session.gameType}`;
                         window.speechSynthesis.speak(msg);
                         tracker.mem.online = true;
                         tracker.calculation.addtime();
