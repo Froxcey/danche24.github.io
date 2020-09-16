@@ -1,4 +1,5 @@
 function trackerStart(){
+    
     var msg = new SpeechSynthesisUtterance();
     msg.volume = 0;
     if (!document.getElementById('trackerInputFormsUser')) return console.error('the id \"trackerInputFormUser\" is required');
@@ -64,6 +65,20 @@ function trackerStart(){
         },
         consoleContent: ''
     };
+    function msToRecord(duration) {
+        var milliseconds = parseInt((duration % 1000) / 100),
+          seconds = Math.floor((duration / 1000) % 60),
+          minutes = Math.floor((duration / (1000 * 60)) % 60),
+          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+      
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        
+        tracker.calculation.hour = Number(hours)
+        tracker.calculation.minute = Number(minutes)
+        tracker.calculation.second = Number(seconds)
+    }
     tracker.docLog('Support <a href="https://www.youtube.com/channel/UC-FLvOdIGGLOIRvKT9_QtOg" target="_blank">Hypersun_pro</a> on Youtube');
     tracker.docLog('Leave this page AFK, and I will report to you when someone go online');
     if (document.getElementById('trackerInputFormsInterval') && Number(document.getElementById('trackerInputFormsInterval').value)&& document.getElementById('trackerInputFormsInterval').value != ""){
@@ -125,16 +140,17 @@ function trackerStart(){
                 return;
             } else {
                 if (respond.session.online){
+                    respond.session.gameType = ""
                     tracker.mem.game = respond.session.gameType;
                     var nowtime = new Date();
                     msg.text = `${tracker.option.name} now online, game type, ${respond.session.gameType} ${respond.session.mode}`;
-                    tracker.docLog(`${tracker.option.name} now online, game: ${respond.session.gameType} ${respond.session.mode} (since ${tracker.mem.lastLogin.toLocaleTimeString()})`);
-                    
+                    tracker.docLog(`${tracker.option.name} now online, game: ${respond.session.gameType.toLowerCase()} ${respond.session.mode.toLowerCase()} (since ${tracker.mem.lastLogin.toLocaleTimeString()})`);
+                    msToRecord(Date.now() - tracker.mem.lastLogin)
                     notify('now online');
                     window.speechSynthesis.speak(msg);
                     tracker.mem.online = true;
                 } else {
-                    tracker.docLog(`Player offline (Last online: ${tracker.mem.lastLogout.toLocaleDateString()} ${tracker.mem.lastLogout.toLocaleTimeString()})`);
+                    tracker.docLog(`${tracker.option.name} currently offline (Last online: ${tracker.mem.lastLogout.toLocaleDateString()} ${tracker.mem.lastLogout.toLocaleTimeString()})`);
                 }
             }
         };
@@ -173,7 +189,7 @@ function trackerStart(){
                 if (respond.session.online){
                     if (!tracker.mem.online){
                         var nowtime = new Date();
-                        tracker.docLog(`${tracker.option.name} now online, game = ${respond.session.gameType} (${new Date().toLocaleTimeString()})`);
+                        tracker.docLog(`${tracker.option.name} now online, game = ${respond.session.gameType.toLowerCase()} (${new Date().toLocaleTimeString()})`);
                         notify('now online');
                         msg.text = `${tracker.option.name} now online, game type, ${respond.session.gameType}`;
                         window.speechSynthesis.speak(msg);
@@ -184,7 +200,7 @@ function trackerStart(){
                         tracker.calculation.addtime();
                         if (respond.session.gameType != tracker.mem.game){
                             tracker.mem.game = respond.session.gameType;
-                            tracker.docLog(`${tracker.option.name} change game to ${tracker.mem.game} (${new Date().toLocaleTimeString()})`);
+                            tracker.docLog(`${tracker.option.name} change game to ${tracker.mem.game.toLowerCase()} (${new Date().toLocaleTimeString()})`);
                             notify('change game');
                             msg.text = `${tracker.option.name} changed game, game type, ${tracker.mem.game}`;
                             window.speechSynthesis.speak(msg);
@@ -192,7 +208,7 @@ function trackerStart(){
                     }
                 } else {
                     if (tracker.mem.online){
-                        tracker.docLog(`Player now offline (${new Date().toLocaleTimeString()})`);
+                        tracker.docLog(`${tracker.option.name} now offline (${new Date().toLocaleTimeString()})`);
                         notify('now offline');
                         tracker.mem.online = false;
                         msg.text = `${tracker.option.name} now offline`;

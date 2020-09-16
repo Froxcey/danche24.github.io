@@ -1,214 +1,30 @@
-<HTML>
-	<HEAD>
-		<TITLE>Videos</TITLE>
-        <style>
-            body {
-                font-family: "Lato", sans-serif;
-            }
-            .mls {
-                visibility: hidden;
-                padding-left: 10px;
-                font-size: 20px;
-                color: lightgray;
-
-            }
-            .sidenav {
-              height: 100%;
-              width: 0;
-              position: fixed;
-              z-index: 1;
-              top: 0;
-              left: 0;
-              background-color: #111;
-              overflow-x: hidden;
-              transition: 0.5s;
-              padding-top: 60px;
-            }
-            .sidenav a {
-              padding: 8px 8px 8px 32px;
-              text-decoration: none;
-              color: #818181;
-              display: block;
-              transition: 0.3s;
-            }
-            .sidenav a:hover {
-              color: #f1f1f1;
-            }
-            .sidenav .closebtn {
-              position: absolute;
-              top: 0;
-              right: 25px;
-              font-size: 36px;
-              margin-left: 50px;
-            }
-
-            @media screen and (max-height: 450px) {
-              .sidenav {padding-top: 15px;}
-              .sidenav a {font-size: 18px;}
-            }
-            
-            input[type=text], input[type=password] {
-              width: 100%;
-              padding: 12px 20px;
-              margin: 8px 0;
-              display: inline-block;
-              border: 1px solid #ccc;
-              box-sizing: border-box;
-            }
-            button {
-              background-color: #4CAF50;
-              color: white;
-              padding: 14px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              width: 100%;
-            }
-            /* Extra styles for the cancel button */
-            .cancelbtn {
-              width: auto;
-              padding: 10px 18px;
-              background-color: #f44336;
-            }
-
-            /* Center the image and position the close button */
-            .imgcontainer {
-              text-align: center;
-              margin: 24px 0 12px 0;
-              position: relative;
-            }
-
-            img.avatar {
-              width: 40%;
-              border-radius: 50%;
-            }
-
-            .container {
-              padding: 16px;
-            }
-
-            span.psw {
-              float: right;
-              padding-top: 16px;
-            }
-
-            /* The Modal (background) */
-            .modal {
-              display: none; /* Hidden by default */
-              position: fixed; /* Stay in place */
-              z-index: 1; /* Sit on top */
-              left: 0;
-              top: 0;
-              width: 100%; /* Full width */
-              height: 100%; /* Full height */
-              overflow: auto; /* Enable scroll if needed */
-              background-color: rgb(0,0,0); /* Fallback color */
-              background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-              padding-top: 60px;
-            }
-
-            /* Modal Content/Box */
-            .modal-content {
-              background-color: #fefefe;
-              margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-              border: 1px solid #888;
-              width: 80%; /* Could be more or less, depending on screen size */
-            }
-
-            /* The Close Button (x) */
-            .close {
-              position: absolute;
-              right: 25px;
-              top: 0;
-              color: #000;
-              font-size: 35px;
-              font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-              color: red;
-              cursor: pointer;
-            }
-
-            /* Add Zoom Animation */
-            .animate {
-              -webkit-animation: animatezoom 0.6s;
-              animation: animatezoom 0.6s
-            }
-
-            @-webkit-keyframes animatezoom {
-              from {-webkit-transform: scale(0)} 
-              to {-webkit-transform: scale(1)}
-            }
-
-            @keyframes animatezoom {
-              from {transform: scale(0)} 
-              to {transform: scale(1)}
-            }
-            #Authorlist{
-				position:fixed;
-				left: 90%;
-				top: 1%;
-				background-color: ffffff;
-				font-size: 10px;
-				border: solid 1px;
-                body {
-              font-family: "Lato", sans-serif;
-            }
-        </style>
-	</HEAD>
-	<BODY>
-		<DIV>
-            <!-- menu thingy -->
-            <DIV id="mySidenav" class="sidenav">
-                <A href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</A>
-                <A href="http://danche24.github.io" style="font-size: 25px">Home</A>
-                <A href="mailto:danichen204@gmail.com" style="font-size: 25px" target="_blank">Contact</A>
-                <A href="#" style="font-size: 25px">Signup</A>
-                <DIV onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><A style="font-size: 25px">Login<SPAM style="font-size: 10px">(coming soon)</SPAM></A></DIV>
-                <DIV id="id01" class="modal">
-                    <FORM class="modal-content animate" action="/emailvarify.html" method="get">
-                        <DIV class="imgcontainer">
-                            <SPAN onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</SPAN>
-                        </DIV>
-                        <DIV class="container">
-                            <LABEL for="uname">Username</LABEL>
-                            <INPUT type="text" id="uname" name="usrname" pattern="{4,25}" title="Username cannot be longer than 25 or shorter than 4 character" required><BR>
-                            <LABEL for="psw">Password</LABEL>
-                            <INPUT type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}" title="Must contain at least one number and one uppercase and lowercase letter, and ≤20 characters" required><BR>
-                            <BUTTON type="submit">Login</BUTTON>
-                            <LABEL>
-                                <INPUT type="checkbox" checked="checked" name="remember"> Remember me
-                            </LABEL>
-                        </DIV>
-                        <div class="container" style="background-color:#f1f1f1">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-                <DIV onmouseover="document.getElementById('mls').style.visibility='visible';" onmouseleave="document.getElementById('mls').style.visibility='hidden';" style="font-size: 25px">
-                    <a href="http://danche24.github.io">Minecraft</a>
-                    <DIV class="mls" id="mls">
-                        <FONT color="lightgray">
-                            <a href="http://danche24.github.io/minecraft/resourcepacks.html">Resourcepacks</a>
-                            <a href="http://danche24.github.io/minecraft/maps.html">Maps</a>
-                            <a href="http://danche24.github.io/minecraft/news.html">News</a>
-                            <a href="http://danche24.github.io/minecraft/videos.html">Videos</a>
-                        </FONT>
-                    </DIV>
-                </DIV>
-            </div>
-            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-            <script>
-                function openNav() {
-                  document.getElementById("mySidenav").style.width = "250px";
-                }
-                function closeNav() {
-                  document.getElementById("mySidenav").style.width = "0";
-                }
-            </script>
-        </DIV>
-		No video yet. I'm trying hard on that
-	</BODY>
-</HTML>
+<html>
+	<head>
+		<title>Video</title>
+    <link rel="stylesheet" type="text/css" href="../sidenav.css">
+  </head>
+	<body vlink="red">
+		<div>
+      <!-- menu thingy -->
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="http://danche24.github.io">Home</a>
+        <a href="mailto:danichen204@gmail.com" target="_blank">Contact</a>
+        <a href="#">Login</a>
+        <a href="#">Signup</a>
+      </div>
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+      <script>
+          function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+          }
+          function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+          }
+      </script>
+    </div>
+    <iframe width="700" height="400" src="https://www.youtube.com/embed/pg7eDuSJoNg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="700" height="400" src="https://www.youtube.com/embed/ege516vpVpc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="700" height="400" src="https://www.youtube.com/embed/pMlgSDWlmVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</body>
+</html>

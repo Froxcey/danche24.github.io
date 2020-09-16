@@ -26,7 +26,9 @@
             setTimeout(() => {
                 document.getElementById("trackerInput").innerHTML = ""
             }, 3000);
-            
+            if(document.getElementById("trackerInputFormsHypixelKey") != ""){
+                document.cookie = `hypixel_Key=${document.getElementById("trackerInputFormsHypixelKey").value}`
+            }
         }
         addEventListener("keydown", key => {
             if (key.keyCode == 13){
@@ -41,7 +43,7 @@
         <img src="./bg.gif" id='bg-gif'>
         <img src="./bg-box.png" id='bg-box'>
         <div id='trackerInputForms'>
-            <span id='trackerInputFormsHeader'>Minecraft Player Online Status Tracker</span>
+            <span id='trackerInputFormsHeader'>Hypixel Player Online Status Tracker</span>
             <input type="text" name="uuid" id="trackerInputFormsUser" placeholder="Enter uuid" autocomplete="on">
             <input type="button" id="trackerInputFormsStart" onclick="track()" value="Track »">
             <input type="button" id="trackerInputFormsAdvancedBtn" value="Advanced ⚙️" onclick="openNav()">
@@ -49,9 +51,9 @@
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <h2>Advanced setting</h2>
-                <input type="text" name="" class="advancedTextbox" id="trackerInputFormsInterval" placeholder="Check Interval"><br>
+                <input type="text" autocomplete="off" name="" class="advancedTextbox" id="trackerInputFormsInterval" placeholder="Check Interval"><br>
                 <input type="text" name="" class="advancedTextbox" id="trackerInputFormsHypixelKey" placeholder="Your own Hypixel API key"><br>
-                <input type="text" name="" class="advancedTextbox" id="trackerInputFormsTTS" placeholder="TTS volume"><br>
+                <input type="text" autocomplete="off" name="" class="advancedTextbox" id="trackerInputFormsTTS" placeholder="TTS volume"><br>
             </div>
         </div>
     </div>
