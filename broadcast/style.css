@@ -1,0 +1,35 @@
+.dropzone {
+    width: 800px;
+    height: 300px;
+    border: 2px dashed #ccc;
+    color: #ccc;
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+    line-height: 300px;
+    position: absolute;
+    top: 20px;
+    cursor: copy;
+}
+.dropzone.over{
+    border-color: black;
+    color: black;
+}
+.dropzone.success{
+    border-color: #13d61d;
+    color: #13d61d;
+}
+.dropzone.error{
+    border-color: #e24414;
+    color: #e24414;
+}
+#step2Info{
+    visibility: hidden;
+}
+.uploadFile {
+    color: rgb(112, 144, 173);
+    cursor: pointer;
+}
+.dropzone.over .uploadFile{
+    color: rgb(0, 100, 194);
+}
