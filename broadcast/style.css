@@ -7,8 +7,7 @@
     margin: auto;
     text-align: center;
     line-height: 300px;
-    position: absolute;
-    top: 20px;
+    position: relative;
     cursor: copy;
 }
 .dropzone.over{
@@ -32,4 +31,14 @@
 }
 .dropzone.over .uploadFile{
     color: rgb(0, 100, 194);
+}
+.pageTitle {
+    text-align: center;
+}
+.dropzone.hidden{
+    visibility: hidden;
+    position: absolute;
+}
+#step2Info{
+    text-align: center;
 }

@@ -7,15 +7,17 @@
 </head>
 <body>
     <!-- firebase init-->
-    <script src="http://danche24.github.io/broadcast/broadcast.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script><script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script><script>var firebaseConfig = {apiKey: "AIzaSyAcrcquKzNjKh1PByVK4NglsVlnYXyeDJU",authDomain: "application-service-a1b32.firebaseapp.com",databaseURL: "https://application-service-a1b32.firebaseio.com",projectId: "application-service-a1b32",storageBucket: "application-service-a1b32.appspot.com",messagingSenderId: "164827554782",appId: "1:164827554782:web:b4b1a42c1d8acc753d334f",measurementId: "G-80953CEHTZ"};firebase.initializeApp(firebaseConfig);firebase.analytics();
-</script>
+    <script src="broadcast.js"></script>
+    <div class="pageTitle">
+        <h1>Broadcast admin</h1>
+        <p>Upload an audio file and it will broadcast to the whole danche24 website</p>
+    </div>
     <div class="dropzone" id="dropzone">
         Drop file here <i>or</i> <label><input type="file" multiple="false" hidden accept="audio/*"/> <span class="uploadFile">click to upload file</span></label>
     </div>
     <div id="step2Info">
-        <div id="title"></div>
         Please review your audio file<br>
+        <div id="title"></div><br>
         <input type="button" id="playAudio" onclick="playSound()" value="play audio"> 
         <input type="button" id="submit" onclick="submit()" value="submit" disabled> 
         <input type="button" id="clear" value="cancel">
@@ -24,6 +26,9 @@
     <textarea id="mp3String" cols="100" rows="10" hidden></textarea>
     
     <script>
+        importScripts("https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js")
+        importScripts("https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js")
+        var firebaseConfig = {apiKey: "AIzaSyAcrcquKzNjKh1PByVK4NglsVlnYXyeDJU",authDomain: "application-service-a1b32.firebaseapp.com",databaseURL: "https://application-service-a1b32.firebaseio.com",projectId: "application-service-a1b32",storageBucket: "application-service-a1b32.appspot.com",messagingSenderId: "164827554782",appId: "1:164827554782:web:b4b1a42c1d8acc753d334f",measurementId: "G-80953CEHTZ"};firebase.initializeApp(firebaseConfig);firebase.analytics();
         var dropzone = document.getElementById("dropzone")
         var dbChild = firebase.database().ref().child('broadcast')
         //drag over
@@ -59,7 +64,7 @@
                 dropzone.className = "dropzone success"
                 dropzone.innerText = "Successfully upload file"
                 setTimeout(function(){
-                    dropzone.style.visibility = "hidden"
+                    dropzone.className = "dropzone hidden"
                     document.getElementById("step2Info").style.visibility = "visible"
                     document.getElementById("title").innerText = name
                     readFile(file)
@@ -70,7 +75,6 @@
         //clear button function
         document.getElementById("clear").onclick = function(){
             document.getElementById("step2Info").style.visibility = "hidden"
-            dropzone.style.visibility = "visible"
             dropzone.className = "dropzone"
             dropzone.innerHTML = "Drop file here <i>or</i> <label><input type=\"file\" multiple=\"false\" hidden accept=\"audio/*\"/> <span class=\"uploadFile\">click to upload file</span></label>"
         }
@@ -80,7 +84,7 @@
             dropzone.className = "dropzone success"
             dropzone.innerText = "Successfully upload file"
             setTimeout(function(){
-                dropzone.style.visibility = "hidden"
+                dropzone.className = "dropzone hidden"
                 document.getElementById("step2Info").style.visibility = "visible"
             }, 2000)
         }
@@ -146,7 +150,7 @@ fileInput.addEventListener('change', function (e) {
         initSound(this.result);
     };
     reader.readAsArrayBuffer(this.files[0]);
-    console.log(this.files[0])
+    document.getElementById('title').innerText = this.files[0].name
     document.getElementById("submit").disabled = true
 }, false);
 function readFile (e) {
