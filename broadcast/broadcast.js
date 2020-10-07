@@ -1,4 +1,3 @@
-import firebase from "firebase";
 var firebaseConfig = {
     apiKey: "AIzaSyAcrcquKzNjKh1PByVK4NglsVlnYXyeDJU",
     authDomain: "application-service-a1b32.firebaseapp.com",
@@ -10,15 +9,15 @@ var firebaseConfig = {
     measurementId: "G-80953CEHTZ"
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 var databaseBroadcast = firebase.database().ref().child('broadcast')
 databaseBroadcast.on('value', snap => {
+    if (snap.val() == "") return
     var broadcastSound = new Audio()
     broadcastSound.src = `data:audio/mp3;base64,${snap.val()}`
     var initSound = new Audio()
     initSound.src = 'http://danche24.github.io/broadcast/intro.mp3'
     initSound.play()
-    setInterval(function(){
+    setTimeout(function(){
         broadcastSound.play()
     }, 3000)
 })

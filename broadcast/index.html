@@ -6,95 +6,86 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- firebase init-->
-    <script src="broadcast.js"></script>
     <div class="pageTitle">
-        <h1>Broadcast admin</h1>
+        <h1>Broadcast Admin</h1>
         <p>Upload an audio file and it will broadcast to the whole danche24 website</p>
     </div>
-    <div class="dropzone" id="dropzone">
-        Drop file here <i>or</i> <label><input type="file" multiple="false" hidden accept="audio/*"/> <span class="uploadFile">click to upload file</span></label>
-    </div>
+    <label><input id="fileInput" type="file" multiple="false" hidden accept="audio/*"/><div class="dropzone" id="dropzone">
+        Click <i>or</i> drop to upload file
+    </div></label>
     <div id="step2Info">
         Please review your audio file<br>
         <div id="title"></div><br>
         <input type="button" id="playAudio" onclick="playSound()" value="play audio"> 
         <input type="button" id="submit" onclick="submit()" value="submit" disabled> 
-        <input type="button" id="clear" value="cancel">
+        <input type="button" id="reset" onclick="reset()" value="clear">
     </div>
     <audio src="" id="broadcastObj" hidden></audio>
     <textarea id="mp3String" cols="100" rows="10" hidden></textarea>
-    
+    <!-- firebase init-->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="broadcast.js"></script>
     <script>
-        importScripts("https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js")
-        importScripts("https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js")
-        var firebaseConfig = {apiKey: "AIzaSyAcrcquKzNjKh1PByVK4NglsVlnYXyeDJU",authDomain: "application-service-a1b32.firebaseapp.com",databaseURL: "https://application-service-a1b32.firebaseio.com",projectId: "application-service-a1b32",storageBucket: "application-service-a1b32.appspot.com",messagingSenderId: "164827554782",appId: "1:164827554782:web:b4b1a42c1d8acc753d334f",measurementId: "G-80953CEHTZ"};firebase.initializeApp(firebaseConfig);firebase.analytics();
         var dropzone = document.getElementById("dropzone")
-        var dbChild = firebase.database().ref().child('broadcast')
+        if(!navigator.onLine){
+            console.log('device offline')
+            dropzone.className = "dropzone error"
+            dropzone.innerHTML = "You are disconnected from network"
+            dropzone.style.cursor = "disabled"
+            document.getElementById("fileInput").type = "button"
+        }
         //drag over
         dropzone.ondragover = function(){
+            if (!navigator.onLine) return
             this.className = "dropzone over"
             return false
         }
         dropzone.ondragleave = function(){
+            if (!navigator.onLine) return
             this.className = "dropzone"
             return false
         }
         //when drop file
         dropzone.ondrop = function(e){
             e.preventDefault();
-            this.className = "dropzone"
+            if (!navigator.onLine) return
             if (e.dataTransfer.files.length > 1){
                 dropzone.className = "dropzone error"
                 dropzone.innerText = "Only one file is allowed"
                 setTimeout(function(){
                     dropzone.className = "dropzone"
-                    dropzone.innerHTML = "Drop file here <i>or</i> <label><input type=\"file\" multiple=\"false\" hidden accept=\"audio/*\"/> <span class=\"uploadFile\">click to upload file</span></label>"
+                    dropzone.innerHTML = "Click <i>or</i> drop to upload file"
                 }, 3000)
             } else if (!e.dataTransfer.files[0].type.includes("audio")){
                 dropzone.className = "dropzone error"
                 dropzone.innerText = "Only audio file is accepted"
                 setTimeout(function(){
                     dropzone.className = "dropzone"
-                    dropzone.innerHTML = "Drop file here <i>or</i> <label><input type=\"file\" multiple=\"false\" hidden accept=\"audio/*\"/> <span class=\"uploadFile\">click to upload file</span></label>"
+                    dropzone.innerHTML = "Click <i>or</i> drop to upload file"
                 }, 3000)
             } else {
                 var file = e.dataTransfer.files[0]
                 var name = e.dataTransfer.files[0].name
                 dropzone.className = "dropzone success"
                 dropzone.innerText = "Successfully upload file"
-                setTimeout(function(){
-                    dropzone.className = "dropzone hidden"
-                    document.getElementById("step2Info").style.visibility = "visible"
-                    document.getElementById("title").innerText = name
-                    readFile(file)
-                    dropzone.innerHTML = "Drop file here <i>or</i> <label><input type=\"file\" multiple=\"false\" hidden accept=\"audio/*\"/> <span class=\"uploadFile\">click to upload file</span></label>"
-                }, 2000)
+                readFile(file)
             }
-        }
-        //clear button function
-        document.getElementById("clear").onclick = function(){
-            document.getElementById("step2Info").style.visibility = "hidden"
-            dropzone.className = "dropzone"
-            dropzone.innerHTML = "Drop file here <i>or</i> <label><input type=\"file\" multiple=\"false\" hidden accept=\"audio/*\"/> <span class=\"uploadFile\">click to upload file</span></label>"
         }
 
         //click input
-        document.querySelector('input[type="file"]').oninput = function (e) {
+        document.getElementById("fileInput").oninput = function (e) {
+            if (!this.files[0]) return
             dropzone.className = "dropzone success"
             dropzone.innerText = "Successfully upload file"
-            setTimeout(function(){
-                dropzone.className = "dropzone hidden"
-                document.getElementById("step2Info").style.visibility = "visible"
-            }, 2000)
+            readFile(this.files[0])
         }
-
-
 
 var context = new AudioContext();
 var source = null;
 var audioBuffer = null;
 var Previewed = false
+var audioLength
 
 // Converts an ArrayBuffer to base64, by converting to string 
 // and then using window.btoa' to base64. 
@@ -120,22 +111,23 @@ var base64ToBuffer = function (buffer) {
 };
 
 function playSound() {
-    document.getElementById("submit").disabled = false
-    // source is global so we can call .stop() later.
-    source = context.createBufferSource();
-    source.buffer = audioBuffer;
-    source.loop = false;
-    source.connect(context.destination);
-    source.start(0); // Play immediately.
+    var previewSound = new Audio()
+    previewSound.src = `data:audio/mp3;base64,${document.getElementById('mp3String').value}`
+    previewSound.play()
+    previewSound.preload = "metadata"
+    previewSound.onloadedmetadata = function() {
+        audioLength = Math.round(previewSound.duration * 1000) + 4000
+    };
+    previewSound.addEventListener("ended", function(){
+        document.getElementById("submit").disabled = false
+    })
 }
-
 
 function initSound(arrayBuffer) {
     var base64String = bufferToBase64(arrayBuffer);
     var audioFromString = base64ToBuffer(base64String);
     document.getElementById("mp3String").value=base64String;
     context.decodeAudioData(audioFromString, function (buffer) {
-        // audioBuffer is global to reuse the decoded audio later.
         audioBuffer = buffer;
     }, function (e) {
         console.log('Error decoding file', e);
@@ -143,48 +135,79 @@ function initSound(arrayBuffer) {
 }
 
 // User selects file, read it as an ArrayBuffer and pass to the API.
-var fileInput = document.querySelector('input[type="file"]');
-fileInput.addEventListener('change', function (e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        initSound(this.result);
-    };
-    reader.readAsArrayBuffer(this.files[0]);
-    document.getElementById('title').innerText = this.files[0].name
-    document.getElementById("submit").disabled = true
-}, false);
+
 function readFile (e) {
+    if (!navigator.onLine) return
     var reader = new FileReader();
     reader.onload = function (e) {
         initSound(this.result);
     };
     reader.readAsArrayBuffer(e);
+    document.getElementById("submit").disabled = true
+    document.getElementById("title").innerText = e.name
+    setTimeout(function(){
+        dropzone.className = "dropzone hidden"
+        document.getElementById("step2Info").style.visibility = "visible"
+    }, 2000)
+}
+try {
+    var dbChild = firebase.database().ref().child('broadcast')
+} catch {
+    dropzone.className = "dropzone error"
+    dropzone.innerHTML = "You are disconnected from network"
+    dropzone.style.cursor = "disabled"
 }
 
-// Load file from a URL as an ArrayBuffer.
-// Example: loading via xhr2: loadSoundFile('sounds/test.mp3');
-
-function loadSoundFile(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'arraybuffer';
-    xhr.onload = function (e) {
-        initSound(this.response); // this.response is an ArrayBuffer.
-    };
-    xhr.send();
-}
 function submit(){
     if(!confirm('You are sure the audio file have been reviewed and is appropriate to all user')){
-        document.getElementById('clear').click()
+        reset()
         return
     }
     dbChild.set(document.getElementById('mp3String').value)
+
+    document.getElementById("step2Info").style.visibility = "hidden"
+    reset("Loading...")
     setInterval(function(){
         dbChild.set('')
-        document.getElementById('clear').click()
+    }, audioLength)
+}
+dbChild.on('value', snap => {
+    if (snap.val() == ""){
+        reset()
+    } else {
+        setTimeout(function(){
+            dropzone.innerText = "Broadcasting file..."
+        }, 300)
+    }
+})   
+//clear button function
+function reset(message){
+    document.getElementById("fileInput").type = "file"
+    if (!message){
+        message = "Click <i>or</i> drop to upload file"
+    }
+    dropzone.innerHTML = message
+    document.querySelector('input[type="file"]').value = ""
+    document.getElementById("step2Info").style.visibility = "hidden"
+    dropzone.className = "dropzone"
+}
+onoffline = function(){
+    document.getElementById("fileInput").type = "button"
+    dropzone.className = "dropzone error"
+    dropzone.innerHTML = "You are disconnected from network"
+    dropzone.style.cursor = "disabled"
+    document.getElementById("step2Info").style.visibility = "hidden"
+}
+ononline = function(){
+    console.log("reconnected")
+    dropzone.className = "dropzone success"
+    dropzone.innerText = "Reconnected"
+    dbChild = firebase.database().ref().child('broadcast')
+    setTimeout(function(){
+        reset()
     }, 3000)
 }
-        
+
     </script>
 </body>
 </html>

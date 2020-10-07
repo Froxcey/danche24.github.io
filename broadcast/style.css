@@ -8,36 +8,41 @@
     text-align: center;
     line-height: 300px;
     position: relative;
-    cursor: copy;
+    cursor: pointer;
 }
 .dropzone.over{
     border-color: black;
+    position: relative;
     color: black;
+    cursor: copy;
 }
 .dropzone.success{
     border-color: #13d61d;
+    position: relative;
     color: #13d61d;
 }
 .dropzone.error{
+    cursor: no-drop;
     border-color: #e24414;
+    position: relative;
     color: #e24414;
+}
+.dropzone.hidden{
+    cursor: no-drop;
+    visibility: hidden;
+    position: absolute;
+}
+.dropzone.disabled{
+    cursor: no-drop;
 }
 #step2Info{
     visibility: hidden;
 }
 .uploadFile {
-    color: rgb(112, 144, 173);
     cursor: pointer;
-}
-.dropzone.over .uploadFile{
-    color: rgb(0, 100, 194);
 }
 .pageTitle {
     text-align: center;
-}
-.dropzone.hidden{
-    visibility: hidden;
-    position: absolute;
 }
 #step2Info{
     text-align: center;
