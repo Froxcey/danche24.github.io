@@ -22,7 +22,7 @@ function trackerStart(){
             uuid: document.getElementById('trackerInputFormsUser').value,
             name: '',
             interval: 15,
-            hypixelKey: 'eb954b0a-acc4-4d97-983e-4758f3eaa410',
+            hypixelKey: '3d97ee03-318d-45d9-8d25-68de20e9e64d',
         },
         calculation : {
             second: 0,
